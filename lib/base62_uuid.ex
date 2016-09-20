@@ -5,10 +5,15 @@ defmodule Base62UUID do
 
   @length 22
 
+  @doc """
+  Generate a 22-byte base-62-encoded v4 UUID.
+  """
+  @spec generate :: String.t
   def generate do
     UUID.uuid4 |> encode
   end
 
+  @spec encode(String.t) :: String.t
   defp encode(uuid) do
     uuid
     |> String.replace("-", "")
@@ -17,6 +22,7 @@ defmodule Base62UUID do
     |> ensure_length
   end
 
+  @spec ensure_length(String.t) :: String.t
   defp ensure_length(encoded) when byte_size(encoded) == @length, do: encoded
   defp ensure_length(encoded) do
     difference = @length - String.length(encoded)
