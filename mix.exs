@@ -35,7 +35,8 @@ defmodule Base62UUID.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:base62, "~> 1.2.0"},
-     {:uuid, "~> 1.1"}]
+     {:uuid, "~> 1.1"},
+     {:ex_doc, ">= 0.0.0", only: [:dev]}]
   end
 
   defp package do
