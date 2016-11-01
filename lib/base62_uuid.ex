@@ -13,8 +13,11 @@ defmodule Base62UUID do
     UUID.uuid4 |> encode
   end
 
+  @doc """
+  Encode a v4 UUID to a 22-byte encoded UUID.
+  """
   @spec encode(String.t) :: String.t
-  defp encode(uuid) do
+  def encode(uuid) do
     uuid
     |> String.replace("-", "")
     |> String.to_integer(16)
