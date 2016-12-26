@@ -33,8 +33,9 @@ defmodule Base62UUID do
 
   def decode(uuid) do
     with {:ok, int} <- Base62.decode(uuid),
-         raw_uuid <- Integer.to_string(int, 16) do
-       {:ok, make_uuid(raw_uuid)}
+         raw_uuid <- Integer.to_string(int, 16),
+         {:ok, uuid} <- make_uuid(raw_uuid) do
+       {:ok, uuid}
     else
       _ -> {:error, "Invalid base-62 UUID"}
     end
@@ -49,13 +50,14 @@ defmodule Base62UUID do
 
   @spec make_uuid(String.t) :: String.t
   defp make_uuid(raw_uuid) do
-    <<gp_1::binary-size(8),
-      gp_2::binary-size(4),
-      gp_3::binary-size(4),
-      gp_4::binary-size(4),
-      gp_5::binary-size(12)>> = String.downcase(raw_uuid)
-
-    [gp_1, gp_2, gp_3, gp_4, gp_5]
-    |> Enum.join("-")
+    with <<gp_1::binary-size(8),
+           gp_2::binary-size(4),
+           gp_3::binary-size(4),
+           gp_4::binary-size(4),
+           gp_5::binary-size(12)>> <- String.downcase(raw_uuid) do
+      {:ok, [gp_1, gp_2, gp_3, gp_4, gp_5] |> Enum.join("-")}
+    else
+      _ -> :error
+    end
   end
 end
