@@ -28,13 +28,15 @@ defmodule Base62UUID do
   @doc """
   Decodea an encoded UUID.
   """
-  @spec decode(String.t) :: {:ok, String.t} | :error
+  @spec decode(String.t) :: {:ok, String.t} | {:error, String.t}
   def decode("0" <> uuid), do: decode(uuid)
 
   def decode(uuid) do
     with {:ok, int} <- Base62.decode(uuid),
          raw_uuid <- Integer.to_string(int, 16) do
-      make_uuid(raw_uuid)
+       {:ok, make_uuid(raw_uuid)}
+    else
+      _ -> {:error, "Invalid base-62 UUID"}
     end
   end
 

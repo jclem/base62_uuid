@@ -11,6 +11,6 @@ defmodule Base62UUIDTest do
 
   test ".decode decodes a UUID" do
     uuid = UUID.uuid4
-    assert uuid |> Base62UUID.encode |> Base62UUID.decode == uuid
+    assert uuid |> Base62UUID.encode |> Base62UUID.decode == {:ok, uuid}
   end
 end
