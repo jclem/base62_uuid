@@ -1,7 +1,7 @@
 defmodule Base62UUID.Mixfile do
   use Mix.Project
 
-  @version "1.2.2"
+  @version "1.2.3"
   @github_url "https://github.com/usecanvas/base62_uuid"
 
   def project do
