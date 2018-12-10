@@ -32,7 +32,7 @@ defmodule Base62UUID do
   @spec decode(String.t()) :: {:ok, String.t()} | {:error, String.t()}
   def decode(uuid) do
     with {:ok, int} <- Base62.decode(uuid),
-         raw_uuid <- Integer.to_string(int, 16),
+         raw_uuid = Integer.to_string(int, 16),
          raw_uuid = ensure_length(raw_uuid, @uuid_length),
          {:ok, uuid} <- make_uuid(raw_uuid) do
       {:ok, uuid}
@@ -50,7 +50,7 @@ defmodule Base62UUID do
     String.duplicate("0", difference) <> encoded
   end
 
-  @spec make_uuid(String.t()) :: String.t()
+  @spec make_uuid(String.t()) :: {:ok, String.t()} | :error
   defp make_uuid(raw_uuid) do
     with <<gp_1::binary-size(8), gp_2::binary-size(4), gp_3::binary-size(4), gp_4::binary-size(4),
            gp_5::binary-size(12)>> <- String.downcase(raw_uuid) do
