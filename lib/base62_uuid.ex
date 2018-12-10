@@ -17,19 +17,16 @@ defmodule Base62UUID do
   @doc """
   Encode a v4 UUID to a 22-byte encoded UUID.
 
+  Returns an error message if the UUID was invalid.
+
   # Example
 
       iex> Base62UUID.encode("063cd93e-dd59-43b6-928b-2d00a49087fc")
       {:ok, "0BllEZppLhVt2a9PljPUJ2"}
   """
-  @spec encode(String.t()) :: {:ok, String.t()} | {:error, String.t()}
+  @spec encode(String.t()) :: {:ok, String.t()}
   def encode(uuid) do
-    {:ok,
-     uuid
-     |> String.replace("-", "")
-     |> String.to_integer(16)
-     |> Base62.encode()
-     |> ensure_length(@length)}
+    {:ok, encode!(uuid)}
   rescue
     e in ArgumentError -> {:error, e.message}
   end
@@ -44,8 +41,11 @@ defmodule Base62UUID do
   """
   @spec encode!(String.t()) :: String.t()
   def encode!(uuid) do
-    {:ok, encoded} = encode(uuid)
-    encoded
+    uuid
+    |> String.replace("-", "")
+    |> String.to_integer(16)
+    |> Base62.encode()
+    |> ensure_length(@length)
   end
 
   @doc """

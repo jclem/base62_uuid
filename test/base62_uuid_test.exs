@@ -27,6 +27,10 @@ defmodule Base62UUIDTest do
     assert Base62UUID.encode!(UUID.uuid4()) |> String.length() == 22
   end
 
+  test ".encode! raises an error" do
+    assert_raise(ArgumentError, fn -> Base62UUID.encode!("not a UUID") end)
+  end
+
   test ".decode decodes a UUID" do
     uuid = UUID.uuid4()
     assert uuid |> Base62UUID.encode!() |> Base62UUID.decode() == {:ok, uuid}
