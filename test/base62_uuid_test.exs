@@ -28,7 +28,7 @@ defmodule Base62UUIDTest do
   end
 
   test ".encode! raises an error" do
-    assert_raise(ArgumentError, fn -> Base62UUID.encode!("not a UUID") end)
+    assert_raise(ArgumentError, "argument error", fn -> Base62UUID.encode!("not a UUID") end)
   end
 
   test ".decode decodes a UUID" do
@@ -39,5 +39,18 @@ defmodule Base62UUIDTest do
   test ".decode decodes a short UUID" do
     base62 = Base62UUID.encode!(@short_uuid)
     assert match?({:ok, @short_uuid}, Base62UUID.decode(base62))
+  end
+
+  test ".decode returns an error" do
+    assert {:error, "Invalid base-62 UUID"} == Base62UUID.decode("!")
+  end
+
+  test ".decode! decodes a UUID" do
+    uuid = UUID.uuid4()
+    assert uuid |> Base62UUID.encode!() |> Base62UUID.decode!() == uuid
+  end
+
+  test ".decode! raises an error" do
+    assert_raise RuntimeError, "Invalid base-62 UUID", fn -> Base62UUID.decode!("!") end
   end
 end

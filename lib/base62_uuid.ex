@@ -51,6 +51,8 @@ defmodule Base62UUID do
   @doc """
   Decode a an encoded UUID.
 
+  Returns an error tuple if the UUID is invalid.
+
   # Example
 
       iex> Base62UUID.decode("0BllEZppLhVt2a9PljPUJ2")
@@ -65,6 +67,22 @@ defmodule Base62UUID do
       {:ok, uuid}
     else
       _ -> {:error, "Invalid base-62 UUID"}
+    end
+  end
+
+  @doc """
+  Decode a an encoded UUID.
+
+  # Example
+
+      iex> Base62UUID.decode!("0BllEZppLhVt2a9PljPUJ2")
+      "063cd93e-dd59-43b6-928b-2d00a49087fc"
+  """
+  @spec decode!(String.t()) :: String.t()
+  def decode!(uuid) do
+    case decode(uuid) do
+      {:ok, uuid} -> uuid
+      {:error, error} -> raise error
     end
   end
 
