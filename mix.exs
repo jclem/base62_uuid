@@ -5,16 +5,18 @@ defmodule Base62UUID.Mixfile do
   @github_url "https://github.com/usecanvas/base62_uuid"
 
   def project do
-    [app: :base62_uuid,
-     description: "A library for creating Base62-encoded UUIDs",
-     version: @version,
-     package: package,
-     name: "Base62UUID",
-     homepage_url: @github_url,
-     source_url: @github_url,
-     docs: docs,
-     elixir: "~> 1.3",
-     deps: deps()]
+    [
+      app: :base62_uuid,
+      description: "A library for creating Base62-encoded UUIDs",
+      version: @version,
+      package: package(),
+      name: "Base62UUID",
+      homepage_url: @github_url,
+      source_url: @github_url,
+      docs: docs(),
+      elixir: "~> 1.3",
+      deps: deps()
+    ]
   end
 
   # Configuration for the OTP application
@@ -34,21 +36,19 @@ defmodule Base62UUID.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:base62, "~> 1.2.0"},
-     {:uuid, "~> 1.1.5"},
-     {:ex_doc, ">= 0.0.0", only: [:dev]}]
+    [{:base62, "~> 1.2.0"}, {:uuid, "~> 1.1.5"}, {:ex_doc, ">= 0.0.0", only: [:dev]}]
   end
 
   defp package do
-    [name: :base62_uuid,
-     licenses: ["MIT"],
-     maintainers: ["Jonathan Clem <jonathan@jclem.net>"],
-     links: %{"GitHub" => @github_url}]
+    [
+      name: :base62_uuid,
+      licenses: ["MIT"],
+      maintainers: ["Jonathan Clem <jonathan@jclem.net>"],
+      links: %{"GitHub" => @github_url}
+    ]
   end
 
   defp docs do
-    [extras: ~w(LICENSE.md),
-     main: "Base62UUID",
-     source_ref: "v#{@version}"]
+    [extras: ~w(LICENSE.md), main: "Base62UUID", source_ref: "v#{@version}"]
   end
 end
