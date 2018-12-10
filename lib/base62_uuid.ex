@@ -16,6 +16,11 @@ defmodule Base62UUID do
 
   @doc """
   Encode a v4 UUID to a 22-byte encoded UUID.
+
+  # Example
+
+      iex> Base62UUID.encode("063cd93e-dd59-43b6-928b-2d00a49087fc")
+      "0BllEZppLhVt2a9PljPUJ2"
   """
   @spec encode(String.t()) :: String.t()
   def encode(uuid) do
@@ -27,7 +32,12 @@ defmodule Base62UUID do
   end
 
   @doc """
-  Decodea an encoded UUID.
+  Decode a an encoded UUID.
+
+  # Example
+
+      iex> Base62UUID.decode("0BllEZppLhVt2a9PljPUJ2")
+      {:ok, "063cd93e-dd59-43b6-928b-2d00a49087fc"}
   """
   @spec decode(String.t()) :: {:ok, String.t()} | {:error, String.t()}
   def decode(uuid) do

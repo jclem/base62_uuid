@@ -1,6 +1,8 @@
 defmodule Base62UUIDTest do
   use ExUnit.Case, async: true
 
+  doctest Base62UUID
+
   @short_uuid "063cd93e-dd59-43b6-928b-2d00a49087fc"
 
   test ".generate generates a UUID" do
