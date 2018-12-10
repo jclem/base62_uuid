@@ -20,7 +20,7 @@ defmodule Base62UUIDTest do
   end
 
   test ".encode handles an invalid UUID" do
-    assert Base62UUID.encode("not-a-uuid") == {:error, :invalid_uuid}
+    assert Base62UUID.encode("not-a-uuid") == {:error, "argument error"}
   end
 
   test ".encode! encodes a UUID" do
