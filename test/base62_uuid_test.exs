@@ -10,20 +10,30 @@ defmodule Base62UUIDTest do
   end
 
   test ".encode encodes a UUID" do
-    assert Base62UUID.encode(UUID.uuid4()) |> String.length() == 22
+    {:ok, encoded} = Base62UUID.encode(UUID.uuid4())
+    assert String.length(encoded) == 22
   end
 
   test ".encode pads a short UUID" do
-    assert Base62UUID.encode(@short_uuid) |> String.length() == 22
+    {:ok, encoded} = Base62UUID.encode(@short_uuid)
+    assert String.length(encoded) == 22
+  end
+
+  test ".encode handles an invalid UUID" do
+    assert Base62UUID.encode("not-a-uuid") == {:error, :invalid_uuid}
+  end
+
+  test ".encode! encodes a UUID" do
+    assert Base62UUID.encode!(UUID.uuid4()) |> String.length() == 22
   end
 
   test ".decode decodes a UUID" do
     uuid = UUID.uuid4()
-    assert uuid |> Base62UUID.encode() |> Base62UUID.decode() == {:ok, uuid}
+    assert uuid |> Base62UUID.encode!() |> Base62UUID.decode() == {:ok, uuid}
   end
 
   test ".decode decodes a short UUID" do
-    base62 = Base62UUID.encode(@short_uuid)
+    base62 = Base62UUID.encode!(@short_uuid)
     assert match?({:ok, @short_uuid}, Base62UUID.decode(base62))
   end
 end
