@@ -23,7 +23,7 @@ as:
     
      ```elixir
      def deps do
-       [{:base62_uuid, "~> 0.1.0"}]
+       [{:base62_uuid, "~> 2.0.0"}]
      end
      ```
 
