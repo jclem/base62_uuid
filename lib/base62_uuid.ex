@@ -24,7 +24,7 @@ defmodule Base62UUID do
       iex> Base62UUID.encode("063cd93e-dd59-43b6-928b-2d00a49087fc")
       {:ok, "0BllEZppLhVt2a9PljPUJ2"}
   """
-  @spec encode(String.t()) :: {:ok, String.t()}
+  @spec encode(String.t()) :: {:ok, String.t()} | {:error, String.t()}
   def encode(uuid) do
     {:ok, encode!(uuid)}
   rescue
