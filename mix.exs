@@ -63,6 +63,6 @@ defmodule Base62UUID.Mixfile do
   end
 
   defp docs do
-    [extras: ~w(LICENSE.md), main: "Base62UUID", source_ref: "v#{@version}"]
+    [extras: ~w(README.md LICENSE.md), main: "README", source_ref: "v#{@version}"]
   end
 end
