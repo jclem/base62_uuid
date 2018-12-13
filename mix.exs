@@ -1,7 +1,7 @@
 defmodule Base62UUID.Mixfile do
   use Mix.Project
 
-  @version "2.0.0"
+  @version "2.0.1"
   @github_url "https://github.com/jclem/base62_uuid"
 
   def project do
