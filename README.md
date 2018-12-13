@@ -1,4 +1,4 @@
-# Base62UUID
+# Base62UUID [![Build Status](https://travis-ci.com/jclem/base62_uuid.svg?branch=master)](https://travis-ci.com/jclem/base62_uuid)
 
 A library for generating 22-byte-length, base-62-encoded v4 UUIDs.
 
