@@ -48,7 +48,7 @@ defmodule Base62UUID.Mixfile do
     [
       {:base62, "~> 1.2.0"},
       {:uuid, "~> 1.1.5"},
-      {:ex_doc, ">= 0.0.0", only: [:dev]},
+      {:ex_doc, "~> 0.19.1", only: [:dev]},
       {:excoveralls, "~> 0.10.3", only: [:test]}
     ]
   end
