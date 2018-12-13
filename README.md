@@ -1,4 +1,4 @@
-# Base62UUID [![Build Status](https://travis-ci.com/jclem/base62_uuid.svg?branch=master)](https://travis-ci.com/jclem/base62_uuid)
+# Base62UUID [![Build Status](https://travis-ci.com/jclem/base62_uuid.svg?branch=master)](https://travis-ci.com/jclem/base62_uuid) [![Coverage Status](https://coveralls.io/repos/github/jclem/base62_uuid/badge.svg?branch=master)](https://coveralls.io/github/jclem/base62_uuid?branch=master)
 
 A library for generating 22-byte-length, Base62-encoded v4 UUIDs.
 
