@@ -15,6 +15,15 @@ defmodule Base62UUID.Mixfile do
       source_url: @github_url,
       docs: docs(),
       elixir: "~> 1.3",
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.html": :test,
+        "coveralls.json": :test,
+        "coveralls.post": :test,
+        "coveralls.travis": :test
+      ],
       deps: deps()
     ]
   end
@@ -36,7 +45,12 @@ defmodule Base62UUID.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    [{:base62, "~> 1.2.0"}, {:uuid, "~> 1.1.5"}, {:ex_doc, ">= 0.0.0", only: [:dev]}]
+    [
+      {:base62, "~> 1.2.0"},
+      {:uuid, "~> 1.1.5"},
+      {:ex_doc, ">= 0.0.0", only: [:dev]},
+      {:excoveralls, "~> 0.10.3", only: [:test]}
+    ]
   end
 
   defp package do
