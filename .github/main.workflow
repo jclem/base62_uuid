@@ -10,6 +10,6 @@ action "mix deps.get" {
 
 action "mix test" {
   uses = "jclem/actions/mix@master"
-  args = "test"
+  args = "test --trace"
   needs = ["mix deps.get"]
 }
