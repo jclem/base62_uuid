@@ -1,7 +1,7 @@
 defmodule Base62UUID.Mixfile do
   use Mix.Project
 
-  @version "2.0.2"
+  @version "3.0.0"
   @github_url "https://github.com/jclem/base62_uuid"
 
   def project do
@@ -14,7 +14,7 @@ defmodule Base62UUID.Mixfile do
       homepage_url: @github_url,
       source_url: @github_url,
       docs: docs(),
-      elixir: "~> 1.3",
+      elixir: "~> 1.7",
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
         coveralls: :test,
@@ -46,10 +46,10 @@ defmodule Base62UUID.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:base62, "~> 1.2.0"},
-      {:uuid, "~> 1.1.5"},
-      {:ex_doc, "~> 0.19.1", only: [:dev]},
-      {:excoveralls, "~> 0.10.3", only: [:test]}
+      {:base62, "~> 1.2"},
+      {:elixir_uuid, "~> 1.2"},
+      {:ex_doc, "~> 0.28.0", only: [:dev]},
+      {:excoveralls, "~> 0.14.4", only: [:test]}
     ]
   end
 

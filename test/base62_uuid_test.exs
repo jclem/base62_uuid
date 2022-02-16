@@ -20,7 +20,9 @@ defmodule Base62UUIDTest do
   end
 
   test ".encode handles an invalid UUID" do
-    assert Base62UUID.encode("not-a-uuid") == {:error, "argument error"}
+    assert Base62UUID.encode("not-a-uuid") ==
+             {:error,
+              "errors were found at the given arguments:\n\n  * 1st argument: not a textual representation of an integer\n"}
   end
 
   test ".encode! encodes a UUID" do
@@ -28,7 +30,11 @@ defmodule Base62UUIDTest do
   end
 
   test ".encode! raises an error" do
-    assert_raise(ArgumentError, "argument error", fn -> Base62UUID.encode!("not a UUID") end)
+    assert_raise(
+      ArgumentError,
+      "errors were found at the given arguments:\n\n  * 1st argument: not a textual representation of an integer\n",
+      fn -> Base62UUID.encode!("not a UUID") end
+    )
   end
 
   test ".decode decodes a UUID" do
